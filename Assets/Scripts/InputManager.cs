@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     private PlayerInput playerInput;
-    private PlayerInput.OnFootActions onFoot;
+    public PlayerInput.OnFootActions onFoot;
     private PlayerMotor motor;
     private PlayerLook look;
     void Awake()
@@ -24,15 +24,18 @@ public class InputManager : MonoBehaviour
         motor.ProcessMovement(onFoot.Movement.ReadValue<Vector2>());
     }
 
-     private void LateUpdate() {
+    private void LateUpdate()
+    {
         look.ProcessLook(onFoot.Look.ReadValue<Vector2>());
     }
 
-    private void OnEnable() {
+    private void OnEnable()
+    {
         onFoot.Enable();
     }
 
-    private void OnDisable() {
+    private void OnDisable()
+    {
         onFoot.Disable();
     }
 }
